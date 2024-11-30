@@ -6,7 +6,12 @@ const barber_logo = require('./images/Barber_Logo_1.png');
 export default function App() {
     return (
         <View style={styles.container}>
-            <Image source={barber_logo} style={{width: 250, height: 200}}/>
+            <Image source={barber_logo}
+                   style={{
+                       width: 300,
+                       height: 150,
+                       resizeMode: 'contain',
+                   }}/>
             <Text style={styles.welcome_text}> Bienvenido a la app</Text>
             <StatusBar style="light"/>
             <Pressable
