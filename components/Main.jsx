@@ -7,28 +7,18 @@ export function Main() {
     const insets = useSafeAreaInsets();
     return (
         <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
-            <View style={{alignItems: "center"}}>
+            <View className={"items-center mg"}>
                 <Main_Logo/>
             </View>
-
-            <View style={{top: 125}}>
-                <Text style={styles.welcome_text}> Te Damos La Bienvenida A La Barber App</Text>
+            <View style={{top: 125, alignItems: "center"}}>
+                <Text className={"color-white text-lg"}>Bienvenido</Text>
                 <StatusBar style="light"/>
                 <Pressable
+                    className={"bg-white rounded active:bg-gray-400 w-11/12 items-center justify-center"}
                     onPress={() => {
-                        alert('Cargando la app!');
-                    }}
-                    style={({pressed}) => [
-                        {
-                            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
-                            alignItems: 'center',
-                        },
-                        styles.wrapperCustom,
-
-                    ]}>
-                    {({pressed}) => (
-                        <Text style={styles.button_text}>{pressed ? 'Pressed!' : 'Comenzar'}</Text>
-                    )}
+                        alert("Comenzar")
+                    }}>
+                    <Text className={"font-bold text-lg"}> Comenzar </Text>
                 </Pressable>
             </View>
         </View>
@@ -45,6 +35,7 @@ const styles = StyleSheet.create({
     button_text: {
         fontSize: 16,
         fontWeight: 'bold',
+        color: '#fff',
     },
     wrapperCustom: {
         borderRadius: 8,

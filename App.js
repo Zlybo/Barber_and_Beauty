@@ -1,11 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {Main} from './components/Main';
 import {SafeAreaProvider} from "react-native-safe-area-context";
+import "./global.css"
 
 export default function App() {
     return (
         <SafeAreaProvider>
-            <View style={styles.container}>
+            <View className={"flex-1 bg-black items-center justify-center"}>
                 <Main/>
             </View>
         </SafeAreaProvider>
