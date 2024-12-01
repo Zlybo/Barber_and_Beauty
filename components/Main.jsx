@@ -1,44 +1,28 @@
-import {StatusBar} from 'expo-status-bar';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, Text, View} from 'react-native';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {Main_Logo} from "./Main_Logo";
 
 export function Main() {
     const insets = useSafeAreaInsets();
     return (
-        <View style={{paddingTop: insets.top, paddingBottom: insets.bottom}}>
-            <View className={"items-center mg"}>
+        <View style={{
+            paddingTop: insets.top,
+            paddingBottom: insets.bottom,
+            backgroundColor: "gray",
+            flex: 1,
+        }}>
+            <View className={"flex-1 bg-black items-center justify-center"}>
                 <Main_Logo/>
-            </View>
-            <View style={{top: 125, alignItems: "center"}}>
-                <Text className={"color-white text-lg"}>Bienvenido</Text>
-                <StatusBar style="light"/>
-                <Pressable
-                    className={"bg-white rounded active:bg-gray-400 w-11/12 items-center justify-center"}
-                    onPress={() => {
-                        alert("Comenzar")
-                    }}>
-                    <Text className={"font-bold text-lg"}> Comenzar </Text>
+                <Text className={"color-[#ffd700] top-52 font-bold text-lg"}>
+                    Te Damos La Bienvenida
+                </Text>
+                <Pressable onPress={() => {alert("Iniciar Sesión")}}
+                    className={"bg-orange-600 rounded top-52 w-6/12 active:bg-orange-800"}>
+                    <Text className={"color-black font-bold text-lg text-center"}>
+                        Iniciar Sesión
+                    </Text>
                 </Pressable>
             </View>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    welcome_text: {
-        color: '#fff',
-        fontSize: 16,
-        marginBottom: 10,
-        textAlign: "center",
-    },
-    button_text: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#fff',
-    },
-    wrapperCustom: {
-        borderRadius: 8,
-        padding: 6,
-    },
-});
