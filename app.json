@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/Default/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "barber_and_beauty",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/Default/splash-icon.png",
@@ -24,6 +25,9 @@
     "web": {
       "favicon": "./assets/Default/favicon.png",
       "bundler": "metro"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
