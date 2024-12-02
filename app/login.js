@@ -4,15 +4,6 @@ import {Link} from "expo-router";
 export default function Login() {
     return (
         <View className={"flex-1 items-center justify-center bg-black"}>
-            <Link asChild href={"/"}>
-                <Pressable className={"flex justify-center bg-orange-600 rounded-full h-12 w-9/12 " +
-                    "active:bg-orange-800"}>
-                    <Text className={"text-center font-bold text-2xl"}>
-                        Regresar
-                    </Text>
-                </Pressable>
-            </Link>
-
             <Text className={"text-center text-white"}>
                 loren ipsum dolor sit amet consectetur adipisicing elit sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -22,6 +13,17 @@ export default function Login() {
                 sint occaecat cupidatat non proident sunt in culpa qui officia deserunt
                 mollit anim id est laborum.
             </Text>
+            <Text className={"color-[#ffd700] top-40 font-bold text-xl"}>
+                Boton De Regreso
+            </Text>
+            <Link asChild href={"/"}>
+                <Pressable className={"flex top-40 justify-center bg-orange-600 rounded-full h-12 w-9/12 " +
+                    "active:bg-orange-800"}>
+                    <Text className={"text-center font-bold text-2xl"}>
+                        Regresar
+                    </Text>
+                </Pressable>
+            </Link>
         </View>
     );
 }
