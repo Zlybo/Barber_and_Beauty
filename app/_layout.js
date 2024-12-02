@@ -10,12 +10,11 @@ export default function Layout() {
         <View className={"flex-1"} style={{
             paddingTop: insets.top,
             paddingBottom: insets.bottom,
-            backgroundColor: "gray",
+            backgroundColor: "black",
             flex: 1,
-        }}>>
+        }}>
             <StatusBar style="light"/>
             <Slot/>
         </View>
-    )
-        ;
+    );
 }
