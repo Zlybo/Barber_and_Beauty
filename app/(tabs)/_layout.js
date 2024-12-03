@@ -25,7 +25,7 @@ export default function TabsLayout() {
                 }}
             />
             <Tabs.Screen
-                name="loginV2"
+                name="map"
                 options={{
                     title: "Missing",
                     tabBarIcon: ({color}) => <MaterialCommunityIcons name="map" size={32} color={color}/>
