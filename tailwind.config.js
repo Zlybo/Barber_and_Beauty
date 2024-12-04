@@ -9,7 +9,12 @@ module.exports = {
     ],
     presets: [require("nativewind/preset")],
     theme: {
-        extend: {},
+        extend: {
+            textColor: {
+                "barber_yellow": "#fed60b",
+                "barber_gray": "#7a7b7b",
+            }
+        },
     },
     plugins: [],
 }

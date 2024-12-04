@@ -18,7 +18,7 @@ export default function TabsLayout() {
                 tabBarInactiveTintColor: "gray",
             }}>
             <Tabs.Screen
-                name="login"
+                name="menu"
                 options={{
                     title: "Home",
                     tabBarIcon: ({color}) => <MaterialCommunityIcons name="home" size={32} color={color}/>,

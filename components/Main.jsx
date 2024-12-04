@@ -10,7 +10,7 @@ export function Main() {
                 <Text className={"color-[#ffd700] top-40 font-bold text-xl"}>
                     Te Damos La Bienvenida
                 </Text>
-                <Link asChild href={"/login"}>
+                <Link asChild href={"/menu"}>
                     <Pressable
                         className={"flex items-center justify-center mt-1 " +
                             "bg-orange-600 rounded-full top-40 h-12 w-9/12 " +

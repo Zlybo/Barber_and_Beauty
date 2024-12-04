@@ -1,13 +1,20 @@
-import {View, Text, Image} from "react-native";
+import {View, Text, Image, Pressable} from "react-native";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import {Gray_Box} from "../components/Gray_Box";
+import {Link} from "expo-router";
 
 export default function Booking() {
     return (
         <View className={"flex-1"}>
-            <Image
-                source={require("../assets/Images/booking.png")}
-                className={"w-full h-3/6"}/>
+            <Image source={require("../assets/Images/booking.png")} className={"w-full h-3/6"}/>
+            <Link asChild href={"./menu"}>
+                <Pressable className={"absolute top-5 left-3 bg-black p-2 rounded-full active:bg-gray-700"}>
+                    <MaterialCommunityIcons name="arrow-left" size={32} color="white"/>
+                </Pressable>
+            </Link>
+            <Pressable className={"absolute top-5 right-3 bg-black p-2 rounded-full active:bg-gray-700"}>
+                <MaterialCommunityIcons name="bookmark-plus-outline" size={32} color="white"/>
+            </Pressable>
             <View className={"bg-black border border-t-gray-500 rounded-t-[50px] flex-1 -mt-[150px] w-full"}>
                 <Text className={"bg-[#fed60b] rounded-xl font-bold self-start p-2 ml-7 mt-7 text-xs"}>
                     PRO BARBER
@@ -33,6 +40,9 @@ export default function Booking() {
                         <MaterialCommunityIcons name="pencil-outline" size={32} color="white"/>
                     </View>
                 </Gray_Box>
+                <Text>
+                    Hola
+                </Text>
             </View>
         </View>
     );
