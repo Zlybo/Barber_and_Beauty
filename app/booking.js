@@ -1,12 +1,10 @@
 import {View, Text, Image, Pressable, Switch} from "react-native";
 import React, {useState} from 'react';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import {Gray_Box} from "../components/Gray_Box";
+import {Simple_Gray_Box, Extended_Gray_Box} from "../components/Gray_Boxes";
 import {Link} from "expo-router";
 
 export default function Booking() {
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return (
         <View className={"flex-1"}>
             <Image source={require("../assets/Images/booking.png")} className={"w-full h-3/6"}/>
@@ -38,42 +36,14 @@ export default function Booking() {
                     </Text>
                 </View>
 
-                <Gray_Box className={"mx-7 flex-row justify-between items-center"}>
+                <Simple_Gray_Box className={"mx-7 mt-5 h-20 flex-row justify-between items-center"}>
                     <View className={"ml-5"}>
                         <Text className={"text-barber_yellow"}>Martes, 25 Agosto</Text>
                         <Text className={"text-white"}>10:00 AM - 11:00 AM</Text>
                     </View>
                     <MaterialCommunityIcons className={"mr-5"} name="pencil-outline" size={32} color="white"/>
-                </Gray_Box>
-
-                <Gray_Box className={"mx-7 h-[300px]"}>
-                    <Gray_Box border={false} className={"mt-0 border-b border-gray-600 flex-row justify-between"}>
-                        <View className={"ml-5 h-full justify-center w-32"}>
-                            <Text className={"text-barber_yellow"}>Corte de cabello </Text>
-                            <View className={"flex-row"}>
-                                <Text className={"pr-1 text-white"}>20.000 </Text>
-                                <Text className={"text-barber_gray"}>- 40 min</Text>
-                            </View>
-                        </View>
-                        <View className={"mr-5 justify-center"}>
-                            <View
-                                className={` ${isEnabled ? "bg-yellow-500" : "bg-gray-700"} justify-center rounded-2xl h-[30px]`}>
-                                <Switch
-                                    trackColor={{false: 'transparent', true: 'transparent'}}
-                                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={toggleSwitch}
-                                    value={isEnabled}
-                                    className={"scale-125"}
-                                />
-                            </View>
-                        </View>
-                    </Gray_Box>
-                    <Gray_Box border={false} className={"mt-0 border-b border-gray-600"}>
-                    </Gray_Box>
-                    <Gray_Box border={false} className={"mt-0 border-b border-gray-600"}>
-                    </Gray_Box>
-                </Gray_Box>
+                </Simple_Gray_Box>
+                <Extended_Gray_Box/>
             </View>
         </View>
     );
