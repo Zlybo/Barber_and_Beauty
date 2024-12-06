@@ -1,16 +1,14 @@
 import {View, Text, Image, Pressable, ScrollView} from "react-native";
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import {Simple_Gray_Box, Extended_Gray_Box} from "../components/Gray_Boxes";
 import {Link, useLocalSearchParams} from "expo-router";
+import {BookmarkContext} from "../components/BookmarkContext";
 
 export default function Booking() {
-    const {saved} = useLocalSearchParams()
-    const [isSaved, setIsSaved] = useState(saved === "true") //los params llegan como strings
-    const bookmarkIcon = !isSaved ? "bookmark-plus-outline" : "bookmark-plus"
-    const toggleSaved = () => {
-        setIsSaved(!isSaved)
-    }
+    const {savedBookmarks, toggleBookmark} = useContext(BookmarkContext);
+    const {id} = useLocalSearchParams();
+    const bookmarkIcon = savedBookmarks[id] ? "bookmark-plus" : "bookmark-plus-outline"
     return (
         <View className={"flex-1"}>
             <Image source={require("../assets/Images/booking.png")} className={"w-full h-3/6"}/>
@@ -21,7 +19,7 @@ export default function Booking() {
                 </Pressable>
             </Link>
 
-            <Pressable onPress={toggleSaved}
+            <Pressable onPress={() => toggleBookmark(id)}
                        className={"absolute top-5 right-3 bg-black p-2 rounded-full active:bg-gray-700"}>
                 <MaterialCommunityIcons name={bookmarkIcon} size={32} color="white"/>
             </Pressable>
