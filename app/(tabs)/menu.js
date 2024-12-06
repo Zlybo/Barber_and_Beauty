@@ -13,21 +13,20 @@ export default function Menu() {
         {id: '4', name: 'Barbería 4', status: 'ABIERTA', saved: false},
     ]);
     const renderCard = ({item}) => (
-        <View
-            className={"bg-[#1c1c1c] h-[250px] w-[180px] border border-gray-600 items-center justify-center rounded-3xl ml-5 mt-5"}>
+        <Simple_Gray_Box className={"items-center justify-center p-3 ml-5 mt-5"}>
             <View className={"bg-white rounded-2xl h-[150px] w-[150px]"}></View>
             <Text className={"text-[#FFEB3B]"}>{item.status}</Text>
             <Text className={"text-white "}>{item.name}</Text>
-            <View className={"flex-row justify-center items-center"}>
+            <View className={"flex-row items-center"}>
                 <Pressable className={"bg-[##2b2b2a] active:bg-white rounded-2xl"}>
                     <MaterialCommunityIcons
-                        className={" rounded-2xl p-3 mr-2"}
+                        className={"rounded-2xl p-3"}
                         name="bookmark-plus-outline" size={24} color="white"
                     />
                 </Pressable>
                 <Link asChild href={"../booking"}>
-                    <Pressable className={"bg-[#fed60b] rounded-2xl active:bg-yellow-500"}>
-                        <View className={"items-center justify-center h-[45.7px] w-[120px]"}>
+                    <Pressable className={"bg-[#fed60b] ml-3 p-3 rounded-2xl active:bg-yellow-500"}>
+                        <View className={"items-center justify-center"}>
                             <Text className={"font-bold text-xl"}>
                                 Agendar cita
                             </Text>
@@ -35,7 +34,7 @@ export default function Menu() {
                     </Pressable>
                 </Link>
             </View>
-        </View>
+        </Simple_Gray_Box>
     )
     return (
         <View className={"flex-1 bg-black"}>
@@ -79,6 +78,7 @@ export default function Menu() {
                 renderItem={renderCard}
                 horizontal={true}
                 keyExtractor={item => item.id}
+                contentContainerStyle={{alignItems: "flex-start"}}
             />
         </View>
     );
