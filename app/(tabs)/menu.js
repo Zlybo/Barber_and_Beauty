@@ -12,35 +12,47 @@ export default function Menu() {
         {id: '3', name: 'Barbería 3', status: 'ABIERTA', saved: false},
         {id: '4', name: 'Barbería 4', status: 'ABIERTA', saved: false},
     ]);
-    const renderCard = ({item}) => (
-        <Simple_Gray_Box className={"items-center justify-center p-3 ml-5 mt-5"}>
-            <View className={"bg-white rounded-2xl h-[150px] w-[150px]"}></View>
-            <Text className={"text-[#FFEB3B]"}>{item.status}</Text>
-            <Text className={"text-white "}>{item.name}</Text>
-            <View className={"flex-row items-center"}>
-                <Pressable className={"bg-[##2b2b2a] active:bg-white rounded-2xl"}>
-                    <MaterialCommunityIcons
-                        className={"rounded-2xl p-3"}
-                        name="bookmark-plus-outline" size={24} color="white"
-                    />
-                </Pressable>
-                <Link asChild href={"../booking"}>
-                    <Pressable className={"bg-[#fed60b] ml-3 p-3 rounded-2xl active:bg-yellow-500"}>
-                        <View className={"items-center justify-center"}>
-                            <Text className={"font-bold text-xl"}>
-                                Agendar cita
-                            </Text>
-                        </View>
+
+    const toggleSaved = (id) => {
+        setBarbershops(barbershops.map(shop => shop.id === id ? {...shop, saved: !shop.saved} : shop))
+    }
+
+    const renderCard = ({item}) => {
+        const icon = item.saved === false ? "bookmark-plus-outline" : "bookmark-plus";
+        return (
+            <Simple_Gray_Box className={"items-center justify-center p-3 ml-5 mt-5"}>
+                <View className={"bg-white rounded-2xl h-[150px] w-[150px]"}></View>
+                <Text className={"text-[#FFEB3B]"}>{item.status}</Text>
+                <Text className={"text-white"}>{item.name}</Text>
+                <View className={"flex-row items-center"}>
+                    <Pressable
+                        className={"bg-[##2b2b2a] active:bg-black rounded-2xl"}
+                        onPress={() => toggleSaved(item.id)}
+                    >
+                        <MaterialCommunityIcons
+                            className={"rounded-2xl p-3"}
+                            name={icon} size={24}
+                            color="white"
+                        />
                     </Pressable>
-                </Link>
-            </View>
-        </Simple_Gray_Box>
-    )
+                    <Link asChild href={"../booking"}>
+                        <Pressable className={"bg-[#fed60b] ml-3 p-3 rounded-2xl active:bg-yellow-500"}>
+                            <View className={"items-center justify-center"}>
+                                <Text className={"font-bold text-xl"}>
+                                    Agendar cita
+                                </Text>
+                            </View>
+                        </Pressable>
+                    </Link>
+                </View>
+            </Simple_Gray_Box>
+        );
+    }
     return (
         <View className={"flex-1 bg-black"}>
-            <View className={"flex-row m-5"}>
+            <View className={"flex-row m-5 justify-between"}>
                 <MaterialIcons name="notifications" size={32} color="gray"/>
-                <Text className={"flex-1 text-white font-medium text-center text-3xl"}>
+                <Text className={" text-white font-medium text-center text-3xl"}>
                     Bienvenido
                 </Text>
                 <MaterialIcons name="settings" size={32} color="gray"/>
