@@ -21,8 +21,6 @@ export default function Booking() {
 
             <View className={"bg-black border border-t-gray-500 rounded-t-[50px] flex-1 -mt-[150px] w-full"}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-
-
                     <Text className={"bg-[#fed60b] rounded-xl font-bold self-start p-2 ml-7 mt-7 text-xs"}>
                         PRO BARBER
                     </Text>
