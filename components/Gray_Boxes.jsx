@@ -36,9 +36,12 @@ export const ServiceItem = ({title, price, duration, isEnabled, toggleSwitch}) =
 
 export const Extended_Gray_Box = () => {
     const [services, setServices] = useState([
-        {id: 1, title: "Corte de cabello", price: "20.000", duration: "40", enabled: false},
-        {id: 2, title: "Barba", price: "15.000", duration: "30", enabled: false},
-        {id: 3, title: "Cejas", price: "10.000", duration: "20", enabled: false}
+        {id: 1, title: "Corte de cabello", price: "30.000", duration: "40", enabled: false},
+        {id: 2, title: "Barba", price: "10.000", duration: "10", enabled: false},
+        {id: 3, title: "Cejas", price: "5.000", duration: "5", enabled: false},
+        {id: 4, title: "Masaje", price: "10.000", duration: "10", enabled: false},
+        {id: 5, title: "Vapor facial", price: "15.000", duration: "10", enabled: false},
+        {id: 6, title: "Mascarilla", price: "15.000", duration: "10", enabled: false},
     ]);
 
     const toggleService = (id) => {
