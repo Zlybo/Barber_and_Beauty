@@ -25,17 +25,18 @@ export default function Menu() {
                 <Text className={"text-[#FFEB3B]"}>{item.status}</Text>
                 <Text className={"text-white"}>{item.name}</Text>
                 <View className={"flex-row items-center"}>
-                    <Pressable
-                        className={"bg-[##2b2b2a] active:bg-black rounded-2xl"}
-                        onPress={() => toggleSaved(item.id)}
-                    >
+                    <Pressable onPress={() => toggleSaved(item.id)}
+                               className={"bg-[##2b2b2a] active:bg-gray-900 rounded-2xl"}>
                         <MaterialCommunityIcons
                             className={"rounded-2xl p-3"}
                             name={icon} size={24}
                             color="white"
                         />
                     </Pressable>
-                    <Link asChild href={"../booking"}>
+                    <Link asChild href={{
+                        pathname: "../booking",
+                        params: {saved: item.saved}
+                    }}>
                         <Pressable className={"bg-[#fed60b] ml-3 p-3 rounded-2xl active:bg-yellow-500"}>
                             <View className={"items-center justify-center"}>
                                 <Text className={"font-bold text-xl"}>
@@ -55,10 +56,16 @@ export default function Menu() {
                 <Text className={" text-white font-medium text-center text-3xl"}>
                     Bienvenido
                 </Text>
-                <MaterialIcons name="settings" size={32} color="gray"/>
+                <Link asChild href={"/settings"}>
+                    <Pressable>
+                        <MaterialIcons name="settings" size={32} color="gray"/>
+                    </Pressable>
+                </Link>
             </View>
             <View className={"flex-row m-5 items-center"}>
-                <MaterialCommunityIcons name="menu" size={32} color="gray"/>
+                <Pressable>
+                    <MaterialCommunityIcons name="menu" size={32} color="gray"/>
+                </Pressable>
                 <Text className={"text-white font-medium text-3xl ml-5"}>
                     Username
                 </Text>
