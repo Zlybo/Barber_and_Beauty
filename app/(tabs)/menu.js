@@ -1,30 +1,51 @@
 import {Pressable, FlatList, Text, View, TextInput} from "react-native";
 import {Link} from "expo-router";
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import {Simple_Gray_Box} from "../../components/Gray_Boxes";
-import {BookmarkContext} from "../../components/BookmarkContext";
+import {api} from "../../api";
 
 export default function Menu() {
-    const [barbershops, setBarbershops] = useState([
-        {id: '1', name: 'Barbería 1', status: 'ABIERTA', saved: false},
-        {id: '2', name: 'Barbería 2', status: 'ABIERTA', saved: false},
-        {id: '3', name: 'Barbería 3', status: 'ABIERTA', saved: false},
-        {id: '4', name: 'Barbería 4', status: 'ABIERTA', saved: false},
-    ]);
+    const [barbershops, setBarbershops] = useState([]);
 
-    const {savedBookmarks, toggleBookmark} = useContext(BookmarkContext);
+    // Cargar barberías y sus estados de bookmark
+    useEffect(() => {
+        (async () => {
+            try {
+                const data = await api.getBarbershops();
+                setBarbershops(data);
+            } catch (error) {
+                console.error('Error cargando barberías:', error);
+            }
+        })();
+    }, []);
+
+    // Función para manejar el toggle del bookmark
+    const handleToggleBookmark = async (barbershopId) => {
+        try {
+            await api.toggleBookmark(barbershopId);
+            // Actualizar el estado local después de confirmar con la base de datos
+            setBarbershops(barbershops.map(shop =>
+                shop.id === barbershopId
+                    ? {...shop, saved: !shop.saved}
+                    : shop
+            ));
+        } catch (error) {
+            console.error('Error al cambiar bookmark:', error);
+        }
+    };
+
 
     const renderCard = ({item}) => {
-        const icon = savedBookmarks[item.id] ? "bookmark-plus" : "bookmark-plus-outline";
+        const icon = item.id ? "bookmark-plus" : "bookmark-plus-outline";
         return (
             <Simple_Gray_Box className={"items-center justify-center p-3 ml-5 mt-5"}>
                 <View className={"bg-white rounded-2xl h-[150px] w-[150px]"}></View>
                 <Text className={"text-[#FFEB3B]"}>{item.status}</Text>
                 <Text className={"text-white"}>{item.name}</Text>
                 <View className={"flex-row items-center"}>
-                    <Pressable onPress={() => toggleBookmark(item.id)}
+                    <Pressable onPress={() => handleToggleBookmark(item.id)}
                                className={"bg-[##2b2b2a] active:bg-gray-900 rounded-2xl"}>
                         <MaterialCommunityIcons
                             className={"rounded-2xl p-3"}
