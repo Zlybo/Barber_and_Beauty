@@ -59,6 +59,16 @@ export const api = {
             console.error('Error fetching bookmark status:', error);
             throw error;
         }
+    },
+
+    getAllBookmarks: async () => {
+        try {
+            const response = await axios.get(`${API_URL}/user/bookmarks`);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching bookmarks:', error);
+            throw error;
+        }
     }
 
 };

@@ -120,6 +120,23 @@ app.get('/api/bookmarks/status/:barbershopId', async (req, res) => {
     }
 });
 
+//  ENDPOINT 6: Obtener todos los bookmarks del usuario
+app.get('/api/user/bookmarks', async (req, res) => {
+    try {
+        const userId = 1; // Usuario fijo por ahora
+        const result = await pool.query(
+            'SELECT bookmarks.*, barbershops.* FROM bookmarks ' +
+            'JOIN barbershops ON bookmarks.barbershop_id = barbershops.id ' +
+            'WHERE bookmarks.user_id = $1',
+            [userId]
+        );
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
 // Inicia el servidor en el puerto especificado
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

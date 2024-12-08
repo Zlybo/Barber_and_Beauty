@@ -13,14 +13,24 @@ export default function Menu() {
     useEffect(() => {
         (async () => {
             try {
-                const data = await api.getBarbershops();
-                setBarbershops(data);
+                // Obtener barberías
+                const barberData = await api.getBarbershops();
+
+                // Obtener estado de bookmarks para el usuario actual
+                const bookmarkData = await api.getAllBookmarks(); // userId fijo por ahora
+
+                // Combinar datos de barberías con sus estados de bookmark
+                const barbershopsWithBookmarks = barberData.map(shop => ({
+                    ...shop,
+                    saved: bookmarkData.some(bookmark => bookmark.barbershop_id === shop.id)
+                }));
+
+                setBarbershops(barbershopsWithBookmarks);
             } catch (error) {
                 console.error('Error cargando barberías:', error);
             }
         })();
     }, []);
-
     // Función para manejar el toggle del bookmark
     const handleToggleBookmark = async (barbershopId) => {
         try {
@@ -38,7 +48,7 @@ export default function Menu() {
 
 
     const renderCard = ({item}) => {
-        const icon = item.id ? "bookmark-plus" : "bookmark-plus-outline";
+        const icon = item.saved ? "bookmark-plus" : "bookmark-plus-outline";
         return (
             <Simple_Gray_Box className={"items-center justify-center p-3 ml-5 mt-5"}>
                 <View className={"bg-white rounded-2xl h-[150px] w-[150px]"}></View>
