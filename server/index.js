@@ -132,7 +132,17 @@ app.get('/api/user/bookmarks', async (req, res) => {
         );
         res.json(result.rows);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({error: err.message});
+    }
+});
+
+app.get('/api/user/:userId', async (req, res) => {
+    try {
+        const {userId} = req.params;
+        const result = await pool.query("SELECT * FROM users WHERE id = $1", [userId]);
+        res.json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({error: err.message});
     }
 });
 

@@ -8,6 +8,7 @@ import {api} from "../../api";
 
 export default function Menu() {
     const [barbershops, setBarbershops] = useState([]);
+    const [user, setUser] = useState([]);
 
     // Cargar barberías y sus estados de bookmark
     useEffect(() => {
@@ -18,6 +19,10 @@ export default function Menu() {
 
                 // Obtener estado de bookmarks para el usuario actual
                 const bookmarkData = await api.getAllBookmarks(); // userId fijo por ahora
+
+                const userId = 1; // Usuario fijo por ahora
+                const userData = await api.getUserData(userId);
+                setUser(userData);
 
                 // Combinar datos de barberías con sus estados de bookmark
                 const barbershopsWithBookmarks = barberData.map(shop => ({
@@ -78,7 +83,8 @@ export default function Menu() {
                 </View>
             </Simple_Gray_Box>
         );
-    }
+    };
+
     return (
         <View className={"flex-1 bg-black"}>
             <View className={"flex-row m-5 justify-between"}>
@@ -97,7 +103,7 @@ export default function Menu() {
                     <MaterialCommunityIcons name="menu" size={32} color="gray"/>
                 </Pressable>
                 <Text className={"text-white font-medium text-3xl ml-5"}>
-                    Username
+                    {user.username}
                 </Text>
             </View>
 
